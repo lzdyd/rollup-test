@@ -5,6 +5,7 @@
   "author": "lzdyd",
   "license": "MIT",
   "scripts": {
+    "build": "rollup -c",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "dependencies": {
@@ -12,6 +13,8 @@
     "react-dom": "^16.10.2"
   },
   "devDependencies": {
+    "rollup": "^1.25.0",
+    "rollup-plugin-typescript2": "^0.24.3",
     "tslint": "^5.20.0",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
