@@ -16,7 +16,9 @@
   "devDependencies": {
     "rollup": "^1.27.8",
     "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-size-snapshot": "^0.10.0",
     "rollup-plugin-typescript2": "^0.25.3",
+    "rollup-plugin-visualizer": "^3.3.0",
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",

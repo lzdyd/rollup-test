@@ -1,5 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import cleaner from 'rollup-plugin-cleaner';
+import visualizer from 'rollup-plugin-visualizer';
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 export default [
   {
@@ -13,6 +15,8 @@ export default [
       cleaner({
         targets: ['./dist/'],
       }),
+      visualizer(),
+      sizeSnapshot(),
     ],
   },
 ];
