@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",
+    "watch": "rollup -c --watch",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "dependencies": {
