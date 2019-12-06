@@ -1,4 +1,5 @@
 import typescript from 'rollup-plugin-typescript2';
+import cleaner from 'rollup-plugin-cleaner';
 
 export default [
   {
@@ -8,6 +9,9 @@ export default [
       typescript({
         typescript: require('typescript'),
         objectHashIgnoreUnknownHack: true,
+      }),
+      cleaner({
+        targets: ['./dist/'],
       }),
     ],
   },
