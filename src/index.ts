@@ -1,5 +1,6 @@
-const foo = (): void => {
-  console.log('test');
-};
+import Http from 'http/Http';
 
-foo();
+const http: Http = new Http('/');
+
+console.log(http.get());
+
