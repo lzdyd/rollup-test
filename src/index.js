@@ -1,6 +1,6 @@
 import Http from 'http/Http';
 
-const http: Http = new Http('/');
+const http = new Http('/');
 
 console.log(http.get());
 
