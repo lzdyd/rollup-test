@@ -11,6 +11,7 @@ import progress from 'rollup-plugin-progress';
 import cjs from 'rollup-plugin-commonjs';
 import buble from '@rollup/plugin-buble';
 import replace from '@rollup/plugin-replace';
+import globals from 'rollup-plugin-node-globals';
 
 import getDirList from './internals/getDirList';
 
@@ -28,7 +29,6 @@ export default [
       },
     ],
     plugins: [
-      buble(),
       cjs({
         exclude: 'node_modules/process-es6/**',
         include: [
@@ -40,11 +40,13 @@ export default [
           'node_modules/prop-types/**',
         ],
       }),
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+      buble(),
       resolve({
         browser: true,
         main: true,
       }),
+      globals(),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
       alias({
         resolve: ['.ts'],
         entries: getDirList(APP_DIR).map(dir => ({
