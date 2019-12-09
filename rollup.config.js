@@ -8,6 +8,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
 import beep from '@rollup/plugin-beep';
 import progress from 'rollup-plugin-progress';
+import cjs from 'rollup-plugin-commonjs';
+import buble from '@rollup/plugin-buble';
+import replace from '@rollup/plugin-replace';
 
 import getDirList from './internals/getDirList';
 
@@ -16,16 +19,38 @@ const APP_DIR = path.resolve(ROOT_DIR, 'src');
 
 export default [
   {
-    input: 'src/index.ts',
-    output: [{ file: 'dist/index.min.js', format: 'iife' }],
+    input: 'src/index.tsx',
+    output: [
+      {
+        file: 'dist/bundle.js',
+        format: 'iife',
+        sourcemap: true,
+      },
+    ],
     plugins: [
-      resolve(),
+      buble(),
+      cjs({
+        exclude: 'node_modules/process-es6/**',
+        include: [
+          'node_modules/create-react-class/**',
+          'node_modules/fbjs/**',
+          'node_modules/object-assign/**',
+          'node_modules/react/**',
+          'node_modules/react-dom/**',
+          'node_modules/prop-types/**',
+        ],
+      }),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+      resolve({
+        browser: true,
+        main: true,
+      }),
       alias({
         resolve: ['.ts'],
         entries: getDirList(APP_DIR).map(dir => ({
           find: dir,
-          replacement: path.resolve(ROOT_DIR, `src/${dir}`)
-        }))
+          replacement: path.resolve(ROOT_DIR, `src/${dir}`),
+        })),
       }),
       typescript({
         typescript: require('typescript'),
