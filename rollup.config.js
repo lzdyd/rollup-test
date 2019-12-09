@@ -14,21 +14,21 @@ const APP_DIR = path.resolve(ROOT_DIR, 'src');
 
 export default [
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: [{ file: 'dist/index.min.js', format: 'iife' }],
     plugins: [
       resolve(),
       alias({
-        resolve: ['.js'],
+        resolve: ['.ts'],
         entries: getDirList(APP_DIR).map(dir => ({
           find: dir,
           replacement: path.resolve(ROOT_DIR, `src/${dir}`)
         }))
       }),
-      // typescript({
-      //   typescript: require('typescript'),
-      //   objectHashIgnoreUnknownHack: true,
-      // }),
+      typescript({
+        typescript: require('typescript'),
+        objectHashIgnoreUnknownHack: true,
+      }),
       cleaner({
         targets: ['./dist/'],
       }),
