@@ -6,6 +6,7 @@ import visualizer from 'rollup-plugin-visualizer';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import resolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
+import beep from '@rollup/plugin-beep';
 
 import getDirList from './internals/getDirList';
 
@@ -14,7 +15,7 @@ const APP_DIR = path.resolve(ROOT_DIR, 'src');
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/index.t1s',
     output: [{ file: 'dist/index.min.js', format: 'iife' }],
     plugins: [
       resolve(),
@@ -34,6 +35,7 @@ export default [
       }),
       visualizer(),
       sizeSnapshot(),
+      beep(),
     ],
   },
 ];

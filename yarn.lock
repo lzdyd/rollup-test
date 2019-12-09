@@ -44,6 +44,11 @@
   dependencies:
     slash "^3.0.0"
 
+"@rollup/plugin-beep@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-beep/-/plugin-beep-0.1.2.tgz#cd294523b38f84cc2e83094a1fb054d01784aab7"
+  integrity sha512-ULopR4RwnD4wHwJtG/BsGX17ZWutXB/Tyvu9nup4MMJuj7xwHKdyezhq2sLGUdmQsyYevq8CDyTNVIImN0x+QQ==
+
 "@rollup/plugin-node-resolve@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-6.0.0.tgz#f351e29b45c007c17df4e28a0efd0d1f5662f59b"
