@@ -21,26 +21,20 @@ const APP_DIR = path.resolve(ROOT_DIR, 'src');
 export default [
   {
     input: 'src/index.tsx',
-    output: [
-      {
-        file: 'dist/bundle.js',
-        format: 'iife',
-        sourcemap: true,
-      },
-    ],
+    output: {
+      file: 'dist/bundle.js',
+      format: 'iife',
+      sourcemap: true,
+    },
     plugins: [
-      cjs({
-        exclude: 'node_modules/process-es6/**',
-        include: [
-          'node_modules/create-react-class/**',
-          'node_modules/fbjs/**',
-          'node_modules/object-assign/**',
-          'node_modules/react/**',
-          'node_modules/react-dom/**',
-          'node_modules/prop-types/**',
-        ],
-      }),
       buble(),
+      cjs({
+        include: ['node_modules/**'],
+        namedExports: {
+          'node_modules/react/index.js': ['Component', 'PureComponent', 'Fragment', 'Children', 'createElement'],
+          'node_modules/react-dom/index.js': ['render']
+        }
+      }),
       resolve({
         browser: true,
         main: true,
@@ -48,7 +42,7 @@ export default [
       globals(),
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
       alias({
-        resolve: ['.ts'],
+        resolve: ['.js', '.ts', '.tsx'],
         entries: getDirList(APP_DIR).map(dir => ({
           find: dir,
           replacement: path.resolve(ROOT_DIR, `src/${dir}`),
@@ -67,6 +61,6 @@ export default [
       progress({
         clearLine: false,
       }),
-    ],
-  },
-];
+    ]
+  }
+]

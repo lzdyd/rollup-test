@@ -1,9 +1,7 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-
-const ROOT_EL = document.querySelector('#app');
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
 ReactDOM.render(
-  <div>React</div>,
-  ROOT_EL,
+  <div>App</div>,
+  document.querySelector('#app')
 );
